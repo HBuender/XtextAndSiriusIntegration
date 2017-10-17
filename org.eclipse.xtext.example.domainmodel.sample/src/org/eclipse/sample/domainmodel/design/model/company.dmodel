@@ -1,0 +1,125 @@
+import com.sample.partner.Lawyer
+import com.sample.partner.Supplier
+import com.sample.persons.Person
+import com.sample.product.Product
+import java.util.Date
+
+package com.sample.persons {
+	entity Person {
+		name:String
+		birthdate:Date
+	}
+
+}
+package com.sample.company {
+	
+	entity aggregate Department {
+		names:String
+		adviser : Lawyer
+		amountOfEmployee:int
+		averageTurnover:int
+		building:String
+		floors:int
+		adress:String
+		numberOfProuducts:int
+	}
+
+	entity Employee extends Person {
+		preferedSupplier:Supplier
+		employee_id:String	
+		worksFor:Department
+	}
+
+	entity Manager extends Employee {
+		manages:Department
+		op hire(Person person, Department department):Employee {
+			val employee  = new Employee()
+			employee.name=person.name
+			employee.employee_id  = "someId"
+			employee.worksFor=department
+			return employee
+		}
+	}
+	
+	entity Accountant extends Employee{
+		budget:Integer
+	}
+	
+	entity Secretary extends Employee{
+	}
+	
+	enum Profession{
+		literal Consultant text "Consultant" code "1"{
+			literal BusinessConsultant text "Business Consultant" code "1.1"
+			literal ITConsultant text "IT Consultant" code "1.2"	
+			literal StrategyConsultant text "Strategy Consultant" code "1.3"
+		}
+		literal Developer text "Developer" code "3"{
+			literal Java text "Java" code "3.1"
+			literal C text "C" code "3.2"
+			literal Angular text "Angular" code "3.3"
+		}
+	}
+}
+
+
+package com.sample.customer{
+	entity aggregate Customer extends Person{
+		email:String
+	}
+	entity Adress{
+		street:String
+		number:String
+		postalCode:String
+		city:String
+		customer:Customer
+	}
+	
+	entity BankAccountInformation{
+		iban:String
+		bic:String
+		customer:Customer
+	}
+}
+
+package com.sample.product{
+	entity aggregate Product {
+		name:String
+	}
+	
+	entity ProductParts{
+		name:String
+		material:String
+		product:Product
+		supplier:Supplier
+	}
+	
+	entity UserManual{
+		description:String
+		disclaimer:String
+		product:Product
+	}
+}
+
+package com.sample.order {
+	entity aggregate Order {
+		order_id:String
+	}
+
+	entity OrderItem {
+		amount: int
+		product:Product
+		order:Order
+	}
+	
+	entity ShippingAdress{
+		street:String
+		city:String
+		order:Order
+	}
+
+	entity TaxInformation{
+		tax:String
+		order:Order
+	}
+}

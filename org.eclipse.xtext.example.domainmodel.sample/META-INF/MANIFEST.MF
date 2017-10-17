@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Design
+Bundle-SymbolicName: org.eclipse.xtext.example.domainmodel.sample
+Bundle-Version: 1.0.0.qualifier
+Export-Package: .,
+ org.eclipse.sample.domainmodel.design.model
+Bundle-ActivationPolicy: lazy

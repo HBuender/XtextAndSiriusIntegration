@@ -1,0 +1,14 @@
+import com.sample.company.Employee
+
+package com.sample.partner {
+	entity Supplier {
+		id:String
+		name:String
+		accountManager:Employee
+	}
+
+	entity Lawyer {
+		id:String
+		name:String
+	}
+}
