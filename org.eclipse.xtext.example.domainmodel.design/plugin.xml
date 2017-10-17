@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+  <extension point="org.eclipse.sirius.componentization">
+    <component class="org.eclipse.xtext.example.domainmodel.design.Activator"
+               id="org.eclipse.xtext.example.domainmodel.design"
+	       name="domainmodel">
+    </component>
+  </extension>
+   <extension
+        point="org.eclipse.ui.navigator.navigatorContent">
+     <commonFilter
+           activeByDefault="true"
+           class="org.eclipse.xtext.example.domainmodel.ui.filter.DomainModelExplorerFilter"
+           description="Hides all JVM Types and empty folders"
+           id="org.eclipse.xtext.example.domainmodel.ui.filter.DomainModelExplorerFilter"
+           name="DomainModel DSL: Filter JVM Types"
+           visibleInUI="true">
+     </commonFilter>
+     <commonFilter
+           activeByDefault="true"
+           class="org.eclipse.xtext.example.domainmodel.ui.filter.DomainModelExplorerExtendedFilter"
+           description="Hides all Files except .aird files"
+           id="org.eclipse.xtext.example.domainmodel.ui.filter.DomainModelExplorerExtendedFilter"
+           name="DomainModel DSL: Show representation files only "
+           visibleInUI="true">
+     </commonFilter>
+  </extension>
+    <extension
+        point="org.eclipse.ui.navigator.viewer">
+     <viewerContentBinding
+           viewerId="org.eclipse.sirius.ui.tools.views.model.explorer">
+        <includes>
+         <contentExtension pattern="org.eclipse.xtext.example.domainmodel.ui.filter.*" />	
+        </includes>
+     </viewerContentBinding>
+  </extension>
+</plugin>

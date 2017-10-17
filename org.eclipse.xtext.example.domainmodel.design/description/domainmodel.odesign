@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:description_2="http://www.eclipse.org/sirius/table/description/1.1.0" xmlns:filter="http://www.eclipse.org/sirius/diagram/description/filter/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" name="domainmodel" version="11.1.1.201610211630">
+  <ownedViewpoints name="Domain Model" modelFileExtension="dmodel">
+    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="EntityDiagram" label="Entity Class Diagram" domainClass="domainmodel.DomainModel">
+      <filters xsi:type="filter:CompositeFilterDescription" name="HideEmptyPropertySection" label="Hide Empty Property Section">
+        <filters xsi:type="filter:MappingFilter" semanticConditionExpression="service:isEmptyPropertySection()"/>
+      </filters>
+      <filters xsi:type="filter:CompositeFilterDescription" name="HideEmptyOperationSection" label="Hide Empty Operation Section">
+        <filters xsi:type="filter:MappingFilter" semanticConditionExpression="service:isEmptyOperationSection()"/>
+      </filters>
+      <filters xsi:type="filter:CompositeFilterDescription" name="HideUnlinked" label="Hide Unlinked Entities">
+        <filters xsi:type="filter:MappingFilter" mappings="//@ownedViewpoints[name='Domain%20Model']/@ownedRepresentations[name='EntityDiagram']/@defaultLayer/@containerMappings[name='EntityContainer']" viewConditionExpression="service:isUnlinked"/>
+      </filters>
+      <filters xsi:type="filter:CompositeFilterDescription" name="HideNonString" label="Hide Entities without String Attribute">
+        <filters xsi:type="filter:MappingFilter" mappings="//@ownedViewpoints[name='Domain%20Model']/@ownedRepresentations[name='EntityDiagram']/@defaultLayer/@containerMappings[name='EntityContainer']" viewConditionExpression="service:hasNoStringProperty"/>
+      </filters>
+      <defaultLayer name="Default">
+        <edgeMappings name="Referenced" semanticCandidatesExpression="service:getReferencingProperties()" sourceMapping="//@ownedViewpoints[name='Domain%20Model']/@ownedRepresentations[name='EntityDiagram']/@defaultLayer/@containerMappings[name='EntityContainer']" targetMapping="//@ownedViewpoints[name='Domain%20Model']/@ownedRepresentations[name='EntityDiagram']/@defaultLayer/@containerMappings[name='EntityContainer']" targetFinderExpression="service:getTargetEntity()" sourceFinderExpression="service:getSourceEntity()" domainClass="Property" useDomainElement="true">
+          <style sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            <beginLabelStyleDescription showIcon="false" labelExpression="feature:name">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </beginLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <edgeMappings name="Extends" sourceMapping="//@ownedViewpoints[name='Domain%20Model']/@ownedRepresentations[name='EntityDiagram']/@defaultLayer/@containerMappings[name='EntityContainer']" targetMapping="//@ownedViewpoints[name='Domain%20Model']/@ownedRepresentations[name='EntityDiagram']/@defaultLayer/@containerMappings[name='EntityContainer']" targetFinderExpression="service:findExtends()">
+          <style targetArrow="InputClosedArrow" sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            <centerLabelStyleDescription showIcon="false" labelExpression="extends">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <containerMappings name="EntityContainer" domainClass="Entity" childrenPresentation="List">
+          <subNodeMappings name="Property" label="Property" semanticCandidatesExpression="service:getProperties()" domainClass="domainmodel.Property">
+            <style xsi:type="style:SquareDescription" labelExpression="service:getPropertyName()" labelAlignment="LEFT" labelPosition="node" resizeKind="NSEW">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            </style>
+          </subNodeMappings>
+          <subNodeMappings name="Operation" semanticCandidatesExpression="service:getOperations()" domainClass="Operation">
+            <style xsi:type="style:SquareDescription" labelExpression="service:getOperationName()" labelPosition="node" resizeKind="NSEW">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            </style>
+          </subNodeMappings>
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" showIcon="false" labelExpression="service:getName">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_blue']"/>
+            <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_blue']"/>
+          </style>
+        </containerMappings>
+        <customization>
+          <vsmElementCustomizations xsi:type="description:VSMElementCustomization" predicateExpression="service:highNumberOfProperties()">
+            <featureCustomizations xsi:type="description:EReferenceCustomization" appliedOn="//@ownedViewpoints[name='Domain%20Model']/@ownedRepresentations[name='EntityDiagram']/@defaultLayer/@containerMappings[name='EntityContainer']/@style //@ownedViewpoints[name='Domain%20Model']/@ownedRepresentations[name='DDDDiagram']/@defaultLayer/@nodeMappings[name='Aggregate']/@borderedNodeMappings[name='ContainedInAggregate']/@style //@ownedViewpoints[name='Domain%20Model']/@ownedRepresentations[name='DDDDiagram']/@defaultLayer/@nodeMappings[name='Aggregate']/@style" referenceName="borderColor">
+              <value href="environment:/viewpoint#//@systemColors/@entries[name='yellow']"/>
+            </featureCustomizations>
+          </vsmElementCustomizations>
+          <vsmElementCustomizations xsi:type="description:VSMElementCustomization" predicateExpression="service:isFromDifferentResource(view)">
+            <featureCustomizations xsi:type="description:EReferenceCustomization" appliedOn="//@ownedViewpoints[name='Domain%20Model']/@ownedRepresentations[name='EntityDiagram']/@defaultLayer/@containerMappings[name='EntityContainer']/@style" referenceName="foregroundColor">
+              <value href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+            </featureCustomizations>
+            <featureCustomizations xsi:type="description:EReferenceCustomization" appliedOn="//@ownedViewpoints[name='Domain%20Model']/@ownedRepresentations[name='EntityDiagram']/@defaultLayer/@containerMappings[name='EntityContainer']/@style" referenceName="backgroundColor">
+              <value href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+            </featureCustomizations>
+          </vsmElementCustomizations>
+        </customization>
+      </defaultLayer>
+    </ownedRepresentations>
+    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="DDDDiagram" label="Domain-driven Design Diagram" domainClass="DomainModel" enablePopupBars="true">
+      <defaultLayer name="Default">
+        <nodeMappings name="Aggregate" semanticCandidatesExpression="service:getAggregates()" domainClass="Entity">
+          <borderedNodeMappings name="ContainedInAggregate" semanticCandidatesExpression="service:getContainedEntities" domainClass="Entity">
+            <style xsi:type="style:EllipseNodeDescription" borderSizeComputationExpression="5" borderLineStyle="dash" sizeComputationExpression="10" labelPosition="node" resizeKind="NSEW">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='purple']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            </style>
+          </borderedNodeMappings>
+          <style xsi:type="style:EllipseNodeDescription" borderSizeComputationExpression="3" sizeComputationExpression="15" labelPosition="node" resizeKind="NSEW">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='green']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+          </style>
+        </nodeMappings>
+        <edgeMappings name="referencedEntity" sourceMapping="//@ownedViewpoints[name='Domain%20Model']/@ownedRepresentations[name='EntityDiagram']/@defaultLayer/@containerMappings[name='EntityContainer']" targetMapping="//@ownedViewpoints[name='Domain%20Model']/@ownedRepresentations[name='EntityDiagram']/@defaultLayer/@containerMappings[name='EntityContainer']" targetFinderExpression="service:findRelated()">
+          <style sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            <centerLabelStyleDescription>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+      </defaultLayer>
+    </ownedRepresentations>
+    <ownedRepresentations xsi:type="description_2:EditionTableDescription" name="EnumerationTable" label="Enumeration Table" domainClass="DomainModel">
+      <ownedLineMappings name="EnumerationLine" label="Enumeration" domainClass="Enumeration" semanticCandidatesExpression="feature:eAllContents" headerLabelExpression="service:getName()">
+        <ownedSubLines name="EnumerationLiteral" label="Enumeration Literal" reusedSubLines="//@ownedViewpoints[name='Domain%20Model']/@ownedRepresentations[name='EnumerationTable']/@ownedLineMappings[name='EnumerationLine']/@ownedSubLines[name='EnumerationLiteral']" reusedInMappings="//@ownedViewpoints[name='Domain%20Model']/@ownedRepresentations[name='EnumerationTable']/@ownedLineMappings[name='EnumerationLine']/@ownedSubLines[name='EnumerationLiteral']" domainClass="EnumerationLiteral" semanticCandidatesExpression="feature:literals" headerLabelExpression="service:getName()"/>
+      </ownedLineMappings>
+      <ownedColumnMappings name="Name" headerLabelExpression="Name" featureName="name" labelExpression="feature:name"/>
+      <ownedColumnMappings name="Text" headerLabelExpression="Text" featureName="text" labelExpression="feature:text"/>
+      <ownedColumnMappings name="Code" headerLabelExpression="Code" featureName="code" labelExpression="feature:code"/>
+    </ownedRepresentations>
+    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="EnumerationClassDiagram" label="Enumeration Class Diagram" domainClass="DomainModel" enablePopupBars="true">
+      <defaultLayer name="Default">
+        <containerMappings name="EnumerationContainer" domainClass="Enumeration">
+          <subContainerMappings name="EnumerationLiteral" semanticCandidatesExpression="feature:literals" domainClass="EnumerationLiteral" reusedContainerMappings="//@ownedViewpoints[name='Domain%20Model']/@ownedRepresentations[name='EnumerationClassDiagram']/@defaultLayer/@containerMappings[name='EnumerationContainer']/@subContainerMappings[name='EnumerationLiteral']">
+            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+              <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+            </style>
+          </subContainerMappings>
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+          </style>
+        </containerMappings>
+      </defaultLayer>
+    </ownedRepresentations>
+    <ownedJavaExtensions qualifiedClassName="org.eclipse.xtext.example.domainmodel.design.Services"/>
+  </ownedViewpoints>
+</description:Group>
